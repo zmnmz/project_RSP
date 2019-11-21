@@ -1,4 +1,6 @@
 from PIL import Image
+import cv2
+import sys
 import pytesseract
 
 import RPi.GPIO as GPIO
@@ -8,11 +10,6 @@ import time
 motor_pin = 0
 # 점자
 dot=[0,0,0,0,0,0]
-
-# 이미지. 처리.
-img =Image.open ('1.png')
-text = pytesseract.image_to_string(img, config='')
-print (text)
 
 def makeZero(_list):
     for i in range(len(_list)):
@@ -135,17 +132,22 @@ def makeDot(ch, dot):
     #return dot
 
 # Main Code
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        imPath = "1.png"
+    else:
+        imPath = sys.argv[1]
 
-# 이미지. 처리.
-img =Image.open ('1.png')
-text = pytesseract.image_to_string(img, config='')
-print (text)
-#
-text = text.lower()
-for ch in text:
-    makeDot(ch, dot)
-    print(ch+":")
-    print(dot)
-    time.sleep(1)
-
+    # 이미지. 처리.
+    #img =Image.open (imPath)
+    im = cv2.imread(imPath, cv2.IMREAD_COLOR)
+    text = pytesseract.image_to_string(im, config='')
+    print (text)
+    #
+    text = text.lower()
+    for ch in text:
+        makeDot(ch, dot)
+        print(ch+':')
+        print(dot)
+        time.sleep(1)
 
