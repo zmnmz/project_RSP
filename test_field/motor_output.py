@@ -1,11 +1,4 @@
-'''
-coding by : 박준형
-what for? : 10진수 자연수를 입력 받아 2진수로 변경, 순서에 맞는 모터 제어. 모터 포트(11,12,13,16,15,18), 점자 구현시 왼쪽 맨 위부터 순서대로
-function input : pre_data(이전 입력 받은 배열), data(입력 받은 배열)
-function output : none
-function operation : 순서에 맞는 모터 제어. 이전 값과 비교하여 작동 결정
-'''
-
+# -*- coding: utf-8 -*-
 
 #선언과 초기화
 import RPi.GPIO as GPIO
