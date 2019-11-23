@@ -17,7 +17,8 @@ progress = 0
 
 def printDot(p,originalText,number = 1,t = 1):
     global progress
-
+    dot=[0,0,0,0,0,0]
+    
     text = originalText[progress:] #progress부터 시작
 
     n = 0

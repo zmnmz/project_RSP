@@ -9,11 +9,6 @@ from dot import *       # dot.py #import RPi.GPIO as GPIO & pytesseract & sleep
 SVO = [11,12,13,16,15,18]
 p = [pros]
 
-
-
-# 점자
-dot=[0,0,0,0,0,0]
-
 # Main Code
 if __name__ == '__main__':
 
