@@ -3,7 +3,7 @@ import cv2
 import sys
 
 
-from dot import *       # dot.py #import RPi.GPIO as GPIO & pytesseract & sleep
+from testdot import *       # dot.py #import RPi.GPIO as GPIO & pytesseract & sleep
 
 # 사용될 모터 핀번호
 SVO = [11,12,13,16,15,18]
