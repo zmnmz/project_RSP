@@ -57,9 +57,12 @@ if __name__ == '__main__':
             else:
                 p[cnt][i].ChangeDutyCycle(3)                                    ##추가사항1
         sleep(1)
+        if(cnt == num_motor-1):                 ##2019/11/29 추가사항1,2 출력가능 최대 글자수 도달시 3초 후 출력장치 초기화
+            sleep(3)                            ##
+            for j in range(num_motor):          ##
+                for i in range(6):
+                    p[j][i].ChangeDutyCycle(3)    # 3: 0 || 7.5: 90 || 12: 180        ##추가사항1
+            sleep(1)
 
-        for i in range(6):
-            p[cnt][i].ChangeDutyCycle(3)    # 3: 0 || 7.5: 90 || 12: 180        ##추가사항1
-        sleep(1)
         cnt = (cnt + 1) % num_motor                                             ##추가사항1,2 기존의 2개 유지시 cnt = (cnt + 1) % 2 사용
 
