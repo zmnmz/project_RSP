@@ -9,17 +9,20 @@ from time import sleep
 from dot import *       # dot.py
 
 # 사용될 모터 핀번호
-SVO = [11,12,13,16,15,18]
+SVO = [11, 12, 13, 16, 23, 18]
+SVO_val = [6.5, 7, 6.5, 6.5, 6.5, 8]
 p = list()
 # 점자
 dot=[0,0,0,0,0,0]
 
+Button_pin = 3
+
 # Main Code
 if __name__ == '__main__':
-
+    
     try:
         if len(sys.argv) < 2:
-            imPath = "1.png"
+            imPath = "3.png"
         else:
           imPath = sys.argv[1]
         #img =Image.open (imPath)
@@ -27,8 +30,8 @@ if __name__ == '__main__':
         text = pytesseract.image_to_string(im, config='')
         print (text)
 
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(True)
         
         # Button setup
         GPIO.setup(3, GPIO.IN)
@@ -37,34 +40,37 @@ if __name__ == '__main__':
         for i in range(6):
             GPIO.setup(SVO[i], GPIO.OUT)
             p.append(GPIO.PWM(SVO[i], 50))
-            p[i].start(0)
+            p[i].start(1)
 
         for i in range(6):
-            p[i].ChangeDutyCycle(3)    # 3: 0 || 7.5: 90 || 12: 180
-            sleep(1)
+            p[i].ChangeDutyCycle(SVO_val[i])    # 3: 0 || 7.5: 90 || 12: 180
+            print(str(i)+' : '+str(SVO_val[i]))
+
         #
         text = text.lower()
         for ch in text:
             makeDot(ch, dot)
             print(ch+':')
             print(dot)
+
             for i in range(6):
-                if dot[i] == 1:
-                    p[i].ChangeDutyCycle(12)    # 3: 0 || 7.5: 90 || 12: 180
-                else:
+                if dot[i] >= 1:
                     p[i].ChangeDutyCycle(3)
-            sleep(1)
-            '''
-            for i in range(6):
-                p[i].ChangeDutyCycle(3)    # 3: 0 || 7.5: 90 || 12: 180
-            sleep(1)
-            '''
+                else:
+                    p[i].ChangeDutyCycle(SVO_val[i])    # 3: 0 || 7.5: 90 || 12: 180
+                #sleep(1)
+            sleep(2)
+            
             while True:
-                button = GPIO.input(3)
+                button = GPIO.input(Button_pin)
                 if button == False:
                     break;
+            
 
     except KeyboardInterrupt:
+        print("GPIO.stop() called!")
+        for i in range(len(p)):
+            p[i].stop()
         print("GPIO.cleanup() called!")
         GPIO.cleanup()
 

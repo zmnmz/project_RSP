@@ -16,12 +16,12 @@ p_1 = GPIO.PWM(16,50)
 # 3: 0 || 7.5: 90 || 12: 180
 
 p_0.start(0)
-p_1.start(0)
-p_0.ChangeDutyCycle(3)
+#p_1.start(0)
+p_1.ChangeDutyCycle(3)
 sleep(1)
-p_0.ChangeDutyCycle(12)
+p_1.ChangeDutyCycle(3)
 sleep(1)
-p_0.ChangeDutyCycle(3)
+p_1.ChangeDutyCycle(3)
 sleep(1)
 
 GPIO.cleanup()

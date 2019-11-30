@@ -40,7 +40,7 @@ if __name__ == '__main__':
         color_stream.start()
         shot_idx = 0
 
-        while True:
+        while input() == 'g':
             frame_depth = depth_stream.read_frame()
             frame_color = color_stream.read_frame()
 
