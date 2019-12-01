@@ -11,5 +11,5 @@ ex)
 
 
 ## run process
-$cd src
+$cd src  
 $python3 main.py 
