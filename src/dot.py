@@ -118,4 +118,3 @@ def makeDot(ch, dot):
         dot[5]=1
     else:
         makeZero(dot)
-        print('dot : '+str(dot))

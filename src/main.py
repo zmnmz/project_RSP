@@ -10,12 +10,12 @@ from dot import *       # dot.py
 
 # 사용될 모터 핀번호
 SVO = [11, 12, 13, 16, 23, 18]
-SVO_val = [6.5, 7, 6.5, 6.5, 6.5, 8]
+SVO_val = [6.5, 6.5, 6.5, 6.5, 6.5, 7.5]
 p = list()
 # 점자
 dot=[0,0,0,0,0,0]
 
-Button_pin = 3
+Button_pin = 4
 
 # Main Code
 if __name__ == '__main__':
@@ -34,13 +34,17 @@ if __name__ == '__main__':
         GPIO.setwarnings(True)
         
         # Button setup
-        GPIO.setup(3, GPIO.IN)
+        GPIO.setup(Button_pin, GPIO.IN)
         
         # Motor setup
         for i in range(6):
             GPIO.setup(SVO[i], GPIO.OUT)
             p.append(GPIO.PWM(SVO[i], 50))
             p[i].start(1)
+
+        for i in range(len(p)):
+            p[i].ChangeDutyCycle(3)
+        sleep(1)
 
         for i in range(6):
             p[i].ChangeDutyCycle(SVO_val[i])    # 3: 0 || 7.5: 90 || 12: 180
@@ -58,16 +62,21 @@ if __name__ == '__main__':
                     p[i].ChangeDutyCycle(3)
                 else:
                     p[i].ChangeDutyCycle(SVO_val[i])    # 3: 0 || 7.5: 90 || 12: 180
-                #sleep(1)
-            sleep(2)
+            sleep(1)
             
             while True:
                 button = GPIO.input(Button_pin)
-                if button == False:
+                if button == True:
                     break;
             
+        for i in range(len(p)):
+            p[i].ChangeDutyCycle(3)
+        sleep(1)
 
     except KeyboardInterrupt:
+        for i in range(len(p)):
+            p[i].ChangeDutyCycle(3)
+        sleep(1)
         print("GPIO.stop() called!")
         for i in range(len(p)):
             p[i].stop()
