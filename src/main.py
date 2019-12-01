@@ -1,4 +1,6 @@
-from PIL import Image
+import os,io
+from GoogleVisionAPI_ReadingIMG import *
+#from PIL import Image
 import cv2
 import sys
 import pytesseract
@@ -25,10 +27,27 @@ if __name__ == '__main__':
             imPath = "3.png"
         else:
           imPath = sys.argv[1]
-        #img =Image.open (imPath)
+
+        # Recognize text using CV
+        '''
         im = cv2.imread(imPath, cv2.IMREAD_COLOR)
         text = pytesseract.image_to_string(im, config='')
         print (text)
+        '''
+        # Recognize text using Google Cloud Vision-API
+
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'ServiceAccountToken.json'
+        file_name = os.path.join(
+            os.path.dirname(__file__),
+            'Hello_world.png')
+        texts = detect_text(file_name)
+        print(texts[0].description)
+        text = texts[0].description
+
+        '''
+        for text in texts:
+            print('\n"{}"'.format(text.description))
+        '''
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(True)

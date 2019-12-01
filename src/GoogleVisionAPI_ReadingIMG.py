@@ -12,7 +12,8 @@ def detect_text(path):
     response = client.text_detection(image=image)
     texts = response.text_annotations
     print('Texts:')
-
+    return texts
+    '''
     for text in texts:
         print('\n"{}"'.format(text.description))
 
@@ -20,10 +21,13 @@ def detect_text(path):
                     for vertex in text.bounding_poly.vertices])
 
         print('bounds: {}'.format(','.join(vertices)))
+    '''
 
+'''
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'ServiceAccountToken.json'
 file_name = os.path.join(
     os.path.dirname(__file__),
     'Hello_world.png')
 
 detect_text(file_name)
+'''
