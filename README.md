@@ -1,5 +1,5 @@
 # project_braille
-#### Python project camera connected braille pad for blinds by 8th team
+#### Python project: camera connected braille pad for blinds by 8th team
 
 ## presentation video
 
