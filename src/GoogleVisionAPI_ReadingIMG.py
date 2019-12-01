@@ -1,11 +1,13 @@
 import os, io
 
-def detect_text(path):
+def detect_text(path, content):
     from google.cloud import vision
     client = vision.ImageAnnotatorClient()
-
-    with io.open(path, 'rb') as image_file:
-        content = image_file.read()
+    if len(path) != 0:
+        with io.open(path, 'rb') as image_file:
+            content = image_file.read()
+        
+    print(type(content))    
 
     image = vision.types.Image(content=content)
 

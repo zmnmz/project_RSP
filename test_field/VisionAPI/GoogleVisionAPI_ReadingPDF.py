@@ -16,11 +16,11 @@ mime_type = 'application/pdf'
 feature = vision.types.Feature(
     type=vision.enums.Feature.Type.DOCUMENT_TEXT_DETECTION)
 
-gcs_source_uri = 'gs://my_pdfs123/SOW.pdf'
+gcs_source_uri = 'gs://mypdfs0802/Vitamin_E_SLAM.pdf'
 gcs_source = vision.types.GcsSource(uri=gcs_source_uri)
 input_config = vision.types.InputConfig(gcs_source=gcs_source, mime_type=mime_type)
 
-gcs_destination_uri = 'gs://my_pdfs123/pdf_result'
+gcs_destination_uri = 'gs://mypdfs0802/pdf_result'
 gcs_destination = vision.types.GcsDestination(uri=gcs_destination_uri)
 output_config = vision.types.OutputConfig(gcs_destination=gcs_destination, batch_size=batch_size)
 

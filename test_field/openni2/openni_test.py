@@ -39,6 +39,10 @@ if __name__ == '__main__':
         cv2.imshow('Depth', depth_array)
         cv2.imshow('Color', color_array)
 
+        is_success, im_buf_arr = cv2.imencode(".jpg", color_array)
+        byte_im = im_buf_arr.tobytes()
+        #print(byte_im)
+
         ch = 0xFF & cv2.waitKey(1)
         if ch == 27:
             break

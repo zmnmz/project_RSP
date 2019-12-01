@@ -9,12 +9,6 @@ import pytesseract
 import RPi.GPIO as GPIO
 from time import sleep
 
-#from dot import *       # dot.py
-
-SVO = [11,12,13,16,15,18]
-p = list()
-dot=[0,0,0,0,0,0]
-
 # Main Code
 if __name__ == '__main__':
 
