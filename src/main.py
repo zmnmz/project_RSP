@@ -87,7 +87,12 @@ if __name__ == '__main__':
                 button = GPIO.input(Button_pin)
                 if button == True:
                     break;
-            
+
+            for i in range(6):
+                if dot[i] >= 1:
+                    p[i].ChangeDutyCycle(SVO_val[i])
+            sleep(0.5)
+
         for i in range(len(p)):
             p[i].ChangeDutyCycle(3)
         sleep(1)
